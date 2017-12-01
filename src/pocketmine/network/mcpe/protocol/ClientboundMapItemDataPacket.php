@@ -93,7 +93,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 				$this->decorations[$i]["yOffset"] = $this->getByte();
 				$this->decorations[$i]["label"] = $this->getString();
 
-				$this->decorations[$i]["color"] = Color::fromABGR($this->getUnsignedVarInt());
+				$this->decorations[$i]["color"] = Color::fromLittleEndianRGBA($this->getUnsignedVarInt());
 			}
 		}
 
@@ -108,7 +108,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 
 			for($y = 0; $y < $this->height; ++$y){
 				for($x = 0; $x < $this->width; ++$x){
-					$this->colors[$y][$x] = Color::fromABGR($this->getUnsignedVarInt());
+					$this->colors[$y][$x] = Color::fromLittleEndianRGBA($this->getUnsignedVarInt());
 				}
 			}
 		}
@@ -157,7 +157,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 				$this->putString($decoration["label"]);
 
 				assert($decoration["color"] instanceof Color);
-				$this->putUnsignedVarInt($decoration["color"]->toABGR());
+				$this->putUnsignedVarInt($decoration["color"]->toLittleEndianRGBA());
 			}
 		}
 
@@ -171,7 +171,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 
 			for($y = 0; $y < $this->height; ++$y){
 				for($x = 0; $x < $this->width; ++$x){
-					$this->putUnsignedVarInt($this->colors[$y][$x]->toABGR());
+					$this->putUnsignedVarInt($this->colors[$y][$x]->toLittleEndianRGBA());
 				}
 			}
 		}

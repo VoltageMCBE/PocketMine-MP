@@ -112,6 +112,14 @@ class Color{
 	}
 
 	/**
+	 * Returns an RGB 24-bit colour value.
+	 * @return int
+	 */
+	public function toRGB() : int{
+		return ($this->r << 16) | ($this->g << 8) | $this->b;
+	}
+
+	/**
 	 * Returns a Color from the supplied ARGB colour code (32-bit)
 	 *
 	 * @param int $code
@@ -131,11 +139,33 @@ class Color{
 	}
 
 	/**
+	 * Returns a Color from the supplied little-endian ARGB colour code (32-bit)
+	 *
+	 * @param int $code
+	 *
+	 * @return Color
+	 */
+	public static function fromLittleEndianARGB(int $code){
+		return new Color(($code >> 8) & 0xff, ($code >> 16) & 0xff, ($code >> 24) & 0xff, $code & 0xff);
+	}
+
+	/**
 	 * Returns a little-endian ARGB 32-bit colour value.
 	 * @return int
 	 */
-	public function toBGRA() : int{
+	public function toLittleEndianARGB() : int{
 		return ($this->b << 24) | ($this->g << 16) | ($this->r << 8) | $this->a;
+	}
+
+
+	/**
+	 * Returns a Color from the supplied RGBA colour code
+	 *
+	 * @param int $code
+	 * @return Color
+	 */
+	public static function fromRGBA(int $code) : Color{
+		return new Color(($code >> 24) & 0xff, ($code >> 16) & 0xff, ($code >> 8) & 0xff, $code & 0xff);
 	}
 
 	/**
@@ -147,14 +177,20 @@ class Color{
 	}
 
 	/**
+	 * Returns a Color from the supplied little-endian RGBA colour code
+	 *
+	 * @param int $code
+	 * @return Color
+	 */
+	public static function fromLittleEndianRGBA(int $code) : Color{
+		return new Color($code & 0xff, ($code >> 8) & 0xff, ($code >> 16) & 0xff, ($code >> 24) & 0xff);
+	}
+
+	/**
 	 * Returns a little-endian RGBA colour value.
 	 * @return int
 	 */
-	public function toABGR() : int{
+	public function toLittleEndianRGBA() : int{
 		return ($this->a << 24) | ($this->b << 16) | ($this->g << 8) | $this->r;
-	}
-
-	public static function fromABGR(int $code){
-		return new Color($code & 0xff, ($code >> 8) & 0xff, ($code >> 16) & 0xff, ($code >> 24) & 0xff);
 	}
 }
