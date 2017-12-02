@@ -170,7 +170,7 @@ class Color{
 	 * @return Color
 	 */
 	public static function fromLittleEndianARGB(int $code){
-		return new Color(($code >> 8) & 0xff, ($code >> 16) & 0xff, ($code >> 24) & 0xff, $code & 0xff);
+		return self::fromARGB(Binary::flipIntEndianness($code));
 	}
 
 	/**
@@ -178,7 +178,7 @@ class Color{
 	 * @return int
 	 */
 	public function toLittleEndianARGB() : int{
-		return ($this->b << 24) | ($this->g << 16) | ($this->r << 8) | $this->a;
+		return Binary::flipIntEndianness($this->toARGB());
 	}
 
 
@@ -207,7 +207,7 @@ class Color{
 	 * @return Color
 	 */
 	public static function fromLittleEndianRGBA(int $code) : Color{
-		return new Color($code & 0xff, ($code >> 8) & 0xff, ($code >> 16) & 0xff, ($code >> 24) & 0xff);
+		return self::fromRGBA(Binary::flipIntEndianness($code));
 	}
 
 	/**
@@ -215,6 +215,6 @@ class Color{
 	 * @return int
 	 */
 	public function toLittleEndianRGBA() : int{
-		return ($this->a << 24) | ($this->b << 16) | ($this->g << 8) | $this->r;
+		return Binary::flipIntEndianness($this->toRGBA());
 	}
 }
