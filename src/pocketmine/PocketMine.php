@@ -79,10 +79,10 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 	use raklib\RakLib;
 
-	const NAME = "PocketMine-MP";
-	const VERSION = "1.7dev";
-	const API_VERSION = "3.0.0-ALPHA10";
-	const CODENAME = "[REDACTED]";
+	const NAME = "VoltMine";
+	const VERSION = "1.0";
+	const API_VERSION = "3.0.0-ALPHA9";
+	const CODENAME = "[CAPACITOR]";
 
 	const MIN_PHP_VERSION = "7.2.0RC3";
 
