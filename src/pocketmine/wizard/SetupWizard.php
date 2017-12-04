@@ -32,7 +32,7 @@ use pocketmine\utils\Config;
 use pocketmine\utils\Utils;
 
 class SetupWizard{
-	public const DEFAULT_NAME = \pocketmine\NAME . " Server";
+	public const DEFAULT_NAME = "VoltageNetwork";
 	public const DEFAULT_PORT = 19132;
 	public const DEFAULT_MEMORY = 256;
 	public const DEFAULT_PLAYERS = 20;
